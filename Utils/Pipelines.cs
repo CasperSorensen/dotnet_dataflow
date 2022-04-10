@@ -14,16 +14,15 @@ public class Pipeline
   /// Pipeline example
   /// </summary>
   /// <returns></returns>
-  public async void ProcessAsync()
+  public async Task ProcessAsync()
   {
-
     // how many things can be processed at once
     var options = new ExecutionDataflowBlockOptions
     {
-      MaxDegreeOfParallelism = 2
+      MaxDegreeOfParallelism = 10
     };
 
-    Console.WriteLine("Processing data...");
+    Console.WriteLine("Processing dataset.");
     var processor = new Processor();
     var fileHandler = new FileHandler();
     var ftpHandler = new FtpHandler();
@@ -37,15 +36,9 @@ public class Pipeline
     ProcessorBlock.LinkTo(FileHandlerBlock, linkOptions);
     FileHandlerBlock.LinkTo(ftpHandlerBlock, linkOptions);
 
-    List<string> data = new()
-    {
-      "Rugbrød",
-      "leverpostej",
-      "sildemad",
-      "Øl",
-      "frokost"
-    };
+    FileReader fr = new();
 
+    IEnumerable<string> data = fr.ProcessFile();
     foreach (var entry in data)
     {
       ProcessorBlock.Post(entry);

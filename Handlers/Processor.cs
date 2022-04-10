@@ -4,14 +4,14 @@ public class Processor
 {
   public async Task<string> doSomeAction(string data)
   {
-    System.Console.WriteLine("Processing...");
+    System.Console.WriteLine("Processing: " + data);
     var newdata = await TransformData(data);
     return newdata;
   }
 
   private async Task<string> TransformData(string data)
   {
-    Thread.Sleep(3000);
-    return data = data + " Processor ->";
+    Thread.Sleep(1000);
+    return data = "Vare:" + data;
   }
 }

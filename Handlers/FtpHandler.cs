@@ -17,7 +17,7 @@ public class FtpHandler
 
   private async Task<string> TransformData(string data)
   {
-    Thread.Sleep(5000);
+    Thread.Sleep(1000);
     return data = data + " FtpHandler ->";
   }
 }

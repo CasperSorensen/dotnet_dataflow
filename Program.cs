@@ -1,11 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using dotnet_dataflow.Utils;
 
-Console.WriteLine("Hello world");
+Console.WriteLine("DataFlow program running...");
+Console.WriteLine("");
 
-Pipeline pipeline = new();
-
-pipeline.ProcessAsync();
-
-Console.ReadKey();
-
+Pipeline pl = new();
+await pl.ProcessAsync();
